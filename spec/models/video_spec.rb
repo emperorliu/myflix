@@ -10,7 +10,7 @@ describe Video do
   it "belongs to category" do
     dramas = Category.create(name: "dramas")
     monk = Video.create(title: "monk", description: "a great video")
-    VideoCategory.new(video_id: 1, category_id: 2)
+    VideoCategory.create(video_id: 1, category_id: 1)
     expect(monk.categories).to eq(dramas)
   end
 end
