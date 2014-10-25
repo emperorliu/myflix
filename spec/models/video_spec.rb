@@ -11,6 +11,6 @@ describe Video do
     dramas = Category.create(name: "dramas")
     monk = Video.create(title: "monk", description: "a great video")
     VideoCategory.new(video_id: 1, category_id: 2)
-    expect(monk.category).to eq(dramas)
+    expect(monk.categories).to eq(dramas)
   end
 end
