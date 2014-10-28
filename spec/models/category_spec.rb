@@ -1,18 +1,50 @@
 require 'spec_helper'
 
 describe Category do
-  it "saves itself" do
-    category = Category.new(name: "comedies")
-    category.save
-    expect(Category.first).to eq(category)
-  end
+  it { should have_many(:videos) }
+  it { should validate_presence_of(:name) }
+  
+  describe "#recent_videos" do
+    it "returns the videos in reverse chronological order by created at" do
+      comedies = Category.create(name: "comedies")
+      futurama = Video.create(title: "Futurama", description: "space travel", created_at: 1.day.ago)
+      south_park = Video.create(title: "South Park", description: "funny show")
+      VideoCategory.create(video_id: futurama.id, category_id: comedies.id)
+      VideoCategory.create(video_id: south_park.id, category_id: comedies.id)
+      expect(comedies.recent_videos).to eq([south_park, futurama])
+    end
 
-  it "has many videos" do
-    comedies = Category.create(name: "comedies")
-    south_park = Video.create(title: "south park", description: "a funny show")
-    futurama = Video.create(title: "futurama", description: "space travel")
-    VideoCategory.create(video_id: 1, category_id: 1)
-    VideoCategory.create(video_id: 2, category_id: 1)
-    expect(comedies.videos).to eq([futurama, south_park])
+    it "gets all videos if less than 6 videos" do
+      comedies = Category.create(name: "comedies")
+      futurama = Video.create(title: "Futurama", description: "space travel", created_at: 1.day.ago)
+      south_park = Video.create(title: "South Park", description: "funny show")
+      VideoCategory.create(video_id: futurama.id, category_id: comedies.id)
+      VideoCategory.create(video_id: south_park.id, category_id: comedies.id)
+      expect(comedies.recent_videos.count).to eq(2)
+    end
+
+    it "returns 6 videos if there are more than 6 videos" do
+      comedies = Category.create(name: "comedies")
+      7.times { Video.create(title: "foo", description: "bar") }
+      Video.all.each do |video|
+        VideoCategory.create(video_id: video.id, category_id: comedies.id)
+      end
+      expect(comedies.recent_videos.count).to eq(6)
+    end
+
+    it "returns the most recent 6 videos" do
+      comedies = Category.create(name: "comedies")
+      7.times { Video.create(title: "foo", description: "bar") }
+      tonights_show = Video.create(title: "Tonights show", description: "talk show", created_at: 1.day.ago)
+      Video.all.each do |video|
+        VideoCategory.create(video_id: video.id, category_id: comedies.id)
+      end
+      expect(comedies.recent_videos).not_to include(tonights_show)
+    end
+
+    it "returns an empty array if the category does not have any videos" do
+      comedies = Category.create(name: "comedies")
+      expect(comedies.recent_videos).to eq([])
+    end
   end
 end
