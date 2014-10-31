@@ -2,13 +2,13 @@
   %h1.col-md-2
     = link_to "MyFLiX"
   - if current_user
-    %ul.col-md-4.clearfix
+    %ul.col-md-3.clearfix
       %li= link_to "Videos"
       %li= link_to "My Queue"
       %li= link_to "People"
-    = form_tag search_videos_path, :method => "get", class: "span5 for-search" do
-      %input.form-control(name="search_term" type="text" placeholder="Search for videos here")
-      %button.btn.btn-default(type="submit") Search
+    = form_tag search_videos_path, :method => "get", class: "col-md-5 navbar-form" do
+      = text_field_tag :search_term, nil, placeholder: "Search for videos here", class: "form-control"
+      = submit_tag("Search", class: "btn btn-default")
     #user_links.pull-right
       %ul
         %li.dropdown

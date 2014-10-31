@@ -6,8 +6,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :current_user
+  def logged_in?
+    !!current_user
+  end
+
+  helper_method :current_user, :logged_in? #if you want to use it in the templates
 end
