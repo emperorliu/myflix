@@ -39,18 +39,18 @@ describe ReviewsController do
         end
 
         it "renders the videos/show template" do #split up if/save logic
-          post :create, review: Fabricate.attributes_for(:review), video_id: video.id
+          post :create, review: {rating: 4}, video_id: video.id
           expect(response).to render_template 'videos/show'
         end
 
         it "sets @video" do
-          post :create, review: Fabricate.attributes_for(:review), video_id: video.id
+          post :create, review: {rating: 4}, video_id: video.id
           expect(assigns(:video)).to eq(video)
         end
 
         it "sets @reviews" do
           review = Fabricate(:review, video: video)
-          post :create, review: Fabricate.attributes_for(:review), video_id: video.id
+          post :create, review: {rating: 4}, video_id: video.id
           expect(assigns(:reviews)).to match_array([review])
         end
       end
