@@ -16,8 +16,7 @@
           %tbody
             - @queue_items.each do |queue_item|
               %tr
-                %td
-                  %input.form-control(type="text" value="1")
+                %td= queue_item.position
                 %td
                   = link_to queue_item.video_title, video_path(queue_item.video)
                 %td
@@ -26,6 +25,6 @@
                 %td
                   = queue_item.categories.collect { |category| link_to category.name, category_path(category) }.join(", ").html_safe
                 %td
-                  = link_to "", method: :post do
+                  = link_to queue_item_path(queue_item), method: :delete do
                     %i.glyphicon.glyphicon-remove
         = button_to "Update Instant Queue", nil, class: "btn btn-default"
