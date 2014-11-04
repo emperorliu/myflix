@@ -106,7 +106,7 @@ describe QueueItemsController do
     #   session[:user_id] = jeff.id
     #   queue_item1 = Fabricate(:queue_item, user: jeff, position: 1)
     #   queue_item2 = Fabricate(:queue_item, user: jeff, position: 2)
-    #   delete :destroy, id: queue_item.id
+    #   delete :destroy, id: queue_item1.id
     #   expect(queue_item2.reload.position).to eq(1)
     # end
 
