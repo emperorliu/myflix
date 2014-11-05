@@ -87,7 +87,7 @@ describe QueueItemsController do
     it "deletes the queue item" do
       jeff = Fabricate(:user)
       session[:user_id] = jeff.id
-      queue_item = Fabricate(:queue_item)
+      queue_item = Fabricate(:queue_item, user: jeff)
       delete :destroy, id: queue_item.id
       expect(QueueItem.count).to eq(0)
     end
