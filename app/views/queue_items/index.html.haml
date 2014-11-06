@@ -23,7 +23,8 @@
                     = link_to queue_item.video_title, video_path(queue_item.video)
                   %td
                     = button_to "Play", nil, class: "btn btn-default"
-                  %td= queue_item.rating
+                  %td
+                    = f.select "queue_items[][rating]", options_for_video_reviews(queue_item.rating), hide_label: :true, include_blank: :true
                   %td
                     = queue_item.categories.collect { |category| link_to category.name, category_path(category) }.join(", ").html_safe
                   %td
