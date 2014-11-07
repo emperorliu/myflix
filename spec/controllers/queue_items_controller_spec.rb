@@ -42,7 +42,7 @@ describe QueueItemsController do
 
     it "creates the queue item that is associated with the sign in user" do
       jeff = Fabricate(:user)
-      session[:user_id] = jeff.id
+      set_current_user(jeff)
       video = Fabricate(:video)
       post :create, video_id: video.id
       expect(QueueItem.first.user).to eq(jeff)
