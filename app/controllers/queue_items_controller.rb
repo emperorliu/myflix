@@ -45,7 +45,7 @@ class QueueItemsController < ApplicationController
 
   def update_queue_items
     ActiveRecord::Base.transaction do #transaction watches to see if anything raises an exception, if it does, then roll back. updating multiple queue items
-      params[:queue_items].each do |queue_item_data|
+      params[:queue_items].each do |queue_item_data| #queue_item_data is one hash in the array of hashes
         queue_item = QueueItem.find(queue_item_data["id"])
         queue_item.update_attributes!(position: queue_item_data["position"], rating: queue_item_data["rating"]) if queue_item.user == current_user #if it fails to save, have to raise exception so use bang on attributes instead of if !queue.blah
       end
