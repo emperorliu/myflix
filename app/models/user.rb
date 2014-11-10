@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   end
 
   def queued_video?(video)
-    self.queue_items.map(&:video).include?(video) #map returns an array of videos
+    queue_items.map(&:video).include?(video) #map returns an array of videos
   end
   #moved this logic from controller to model, however the tests are operated at a high level (using sessions)so we keep the test in the controller action
 end
