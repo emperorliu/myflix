@@ -12,6 +12,8 @@ Myflix::Application.routes.draw do
   end
   resources :categories, only: [:show]
 
+  resources :users, only: [:show]
+
   get '/register', to: 'users#new'
   resources :users, only: [:create]
 
