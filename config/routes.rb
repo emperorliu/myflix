@@ -13,6 +13,8 @@ Myflix::Application.routes.draw do
   resources :categories, only: [:show]
 
   resources :users, only: [:show]
+  get 'people', to: 'relationships#index'
+  resources :relationships, only: [:destroy, :create]
 
   get '/register', to: 'users#new'
   resources :users, only: [:create]
