@@ -1,11 +1,11 @@
 %section#top-header.row
   %h1.col-md-2
-    = link_to "MyFLiX"
+    = link_to "MyFLiX", home_path
   - if current_user
     %ul.col-md-3.clearfix
-      %li= link_to "Videos"
-      %li= link_to "My Queue"
-      %li= link_to "People"
+      %li= link_to "Videos", home_path
+      %li= link_to "My Queue", my_queue_path
+      %li= link_to "People", people_path
     = form_tag search_videos_path, :method => "get", class: "col-md-5 navbar-form" do
       = text_field_tag :search_term, nil, placeholder: "Search for videos here", class: "form-control"
       = submit_tag("Search", class: "btn btn-default")
