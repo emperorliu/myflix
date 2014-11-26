@@ -6,12 +6,12 @@ describe ForgotPasswordsController do
     context "with blank inputs" do
 
       it "redirects to the forgot passwords page" do
-        post :create, email: " "
+        post :create, email: ""
         expect(response).to redirect_to forgot_password_path
       end
 
       it "shows an error message" do
-        post :create, email: " "
+        post :create, email: ""
         expect(flash[:danger]). to eq("Email cannot be blank.")
       end
     end
