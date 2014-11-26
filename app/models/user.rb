@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_many :reviews, ->{ order("created_at DESC")}
   has_many :queue_items, ->{ order(position: :asc) }
   has_many :following_relationships, class_name: "Relationship", foreign_key: :follower_id
+  has_many :leader_relationships, class_name: "Relationship", foreign_key: :leader_id
+
+  before_create :generate_token
 
   has_secure_password validations: false
 
@@ -26,4 +29,7 @@ class User < ActiveRecord::Base
     !(another_user == self || self.follows?(another_user))
   end
 
+  def generate_token
+    self.token = SecureRandom.urlsafe_base64
+  end
 end
