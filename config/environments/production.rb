@@ -25,6 +25,6 @@ Myflix::Application.configure do
     :domain          => 'secret-island-5222.herokuapp.com',
     :user_name       => ENV['MAILGUN_SMTP_LOGIN'],
     :password        => ENV['MAILGUN_SMTP_PASSWORD'],
-    :authentication  => 'plain',
+    :authentication  => :plain,
   }
 end
