@@ -22,6 +22,29 @@ describe UsersController do
       it "redirect to sign in path" do
         expect(response).to redirect_to sign_in_path
       end
+
+      it "makes the user follow the inviter" do
+        jeff = Fabricate(:user)
+        invitation = Fabricate(:invitation, inviter: jeff, recipient_email: 'sean@gmail.com')
+        post :create, user: { email: 'sean@gmail.com', password: 'password', full_name: 'Sean' }, invitation_token: invitation.token
+        sean = User.where(email: 'sean@gmail.com').first
+        expect(sean.follows?(jeff)).to be true
+      end
+
+      it "makes the inviter follow the user" do
+        jeff = Fabricate(:user)
+        invitation = Fabricate(:invitation, inviter: jeff, recipient_email: 'sean@gmail.com')
+        post :create, user: { email: 'sean@gmail.com', password: 'password', full_name: 'Sean' }, invitation_token: invitation.token
+        sean = User.where(email: 'sean@gmail.com').first
+        expect(jeff.follows?(sean)).to be true
+      end
+
+      it "expires the invitation upon acceptance" do
+        jeff = Fabricate(:user)
+        invitation = Fabricate(:invitation, inviter: jeff, recipient_email: 'sean@gmail.com')
+        post :create, user: { email: 'sean@gmail.com', password: 'password', full_name: 'Sean' }, invitation_token: invitation.token
+        expect(Invitation.first.token).to be_nil
+      end
     end
 
     context "with invalid input" do
@@ -44,8 +67,7 @@ describe UsersController do
 
     context "sending emails" do
 
-      after { ActionMailer::Base.deliveries.clear }
-      #emails don't rollback so it just keeps adding with each test. have to clear after each test, hence the "after"
+      before { ActionMailer::Base.deliveries.clear }
 
       it "sends out the email with valid inputs" do
         post :create, user: { email: "jeff@example.com", password: "password", full_name: "jeff" }
@@ -74,6 +96,33 @@ describe UsersController do
       jeff = Fabricate(:user)
       get :show, id: jeff.id
       expect(assigns(:user)).to eq(jeff)
+    end
+  end
+
+  describe "GET new_with_invitation_token" do
+
+    it "renders the new template" do
+      invitation = Fabricate(:invitation)
+      get :new_with_invitation_token, token: invitation.token
+      expect(response).to render_template :new
+    end
+
+    it "sets @user with recipient's email" do
+      invitation = Fabricate(:invitation)
+      get :new_with_invitation_token, token: invitation.token
+      expect(assigns(:user).email).to eq(invitation.recipient_email)
+    end
+
+    it "sets @invitation_token" do
+      invitation = Fabricate(:invitation)
+      get :new_with_invitation_token, token: invitation.token
+      expect(assigns(:invitation_token)).to eq(invitation.token)
+    end
+
+    it "redirects to expired token page for invalid inputs" do
+      invitation = Fabricate(:invitation)
+      get :new_with_invitation_token, token: "12345"
+      expect(response).to redirect_to expired_token_path
     end
   end
 end
