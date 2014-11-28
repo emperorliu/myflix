@@ -68,7 +68,6 @@ describe UsersController do
     context "sending emails" do
 
       before { ActionMailer::Base.deliveries.clear }
-      #emails don't rollback so it just keeps adding with each test. have to clear after each test, hence the "after"
 
       it "sends out the email with valid inputs" do
         post :create, user: { email: "jeff@example.com", password: "password", full_name: "jeff" }
