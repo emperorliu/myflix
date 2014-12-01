@@ -1,5 +1,7 @@
-require 'raven'
+if Rails.env.production? || Rails.env.staging?
+  require 'raven'
 
-Raven.configure do |config|
-  config.dsn = 'https://8f1219580bdf40f2b5fce275df73cf22:3710a9f98b8b448ca180a0e8d90a195e@app.getsentry.com/33945'
+  Raven.configure do |config|
+    config.dsn = ENV['SENTRY_DSN']
+  end
 end
