@@ -14,6 +14,10 @@ Myflix::Application.routes.draw do
   end
   resources :categories, only: [:show]
 
+  namespace :admin do
+    resources :videos, only: [:new]
+  end
+
   resources :users, only: [:show]
   get 'people', to: 'relationships#index'
   resources :relationships, only: [:destroy, :create]
