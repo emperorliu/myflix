@@ -14,6 +14,13 @@ gem 'bcrypt-ruby'
 gem 'fabrication'
 gem 'faker'
 gem 'figaro'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+gem 'unicorn'
+gem 'foreman'
+gem 'paratrooper'
+gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 
 group :development do
   gem 'thin'
