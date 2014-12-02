@@ -2,7 +2,7 @@
   .container
     .row
       .col-md-10.col-md-offset-1
-        = bootstrap_form_for([:admin, @video], class: "form-horizontal") do |f|
+        = bootstrap_form_for([:admin, @video], html: {class: 'form-horizontal'}) do |f|
           %ul.nav.nav-tabs
             %li
               %a(href="") Recent Payments
@@ -10,16 +10,11 @@
               %a(href="") Add a New Video
           %br
           %fieldset
-            .form-group
-              .col-sm-3
-                = f.text_field :title
+            = f.text_field :title, class: "col-sm-3"
             .form-group
               .col-sm-6
-                = f.select :category_id, options_for_select(Category.all.map {|category| [category.name, category.id]})
-            .form-group
-              %label.control-label.col-sm-3 Description
-              .col-sm-6
-                = f.text_area :description
+                = f.select :category_ids, Category.all.map {|category| [category.name, category.id]}, { :prompt => "Please select:", label: "Categories" }, { :multiple => true, :size => 5 }
+              = f.text_area :description, rows: 8
             .form-group
               %label.control-label.col-sm-3 Large Cover
               .col-sm-6
