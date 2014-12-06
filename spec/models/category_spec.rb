@@ -7,28 +7,21 @@ describe Category do
   describe "#recent_videos" do
     it "returns the videos in reverse chronological order by created at" do
       comedies = Category.create(name: "comedies")
-      futurama = Video.create(title: "Futurama", description: "space travel", created_at: 1.day.ago)
-      south_park = Video.create(title: "South Park", description: "funny show")
-      VideoCategory.create(video_id: futurama.id, category_id: comedies.id)
-      VideoCategory.create(video_id: south_park.id, category_id: comedies.id)
+      futurama = Video.create(title: "Futurama", description: "space travel", category_ids: [comedies.id], created_at: 1.day.ago)
+      south_park = Video.create(title: "South Park", description: "funny show", category_ids: [comedies.id])
       expect(comedies.recent_videos).to eq([south_park, futurama])
     end
 
     it "gets all videos if less than 6 videos" do
       comedies = Category.create(name: "comedies")
-      futurama = Video.create(title: "Futurama", description: "space travel", created_at: 1.day.ago)
-      south_park = Video.create(title: "South Park", description: "funny show")
-      VideoCategory.create(video_id: futurama.id, category_id: comedies.id)
-      VideoCategory.create(video_id: south_park.id, category_id: comedies.id)
+      futurama = Video.create(title: "Futurama", description: "space travel", category_ids: [comedies.id], created_at: 1.day.ago)
+      south_park = Video.create(title: "South Park", description: "funny show", category_ids: [comedies.id])
       expect(comedies.recent_videos.count).to eq(2)
     end
 
     it "returns 6 videos if there are more than 6 videos" do
       comedies = Category.create(name: "comedies")
-      7.times { Video.create(title: "foo", description: "bar") }
-      Video.all.each do |video|
-        VideoCategory.create(video_id: video.id, category_id: comedies.id)
-      end
+      7.times { Video.create(title: "foo", description: "bar", category_ids: [comedies.id]) }
       expect(comedies.recent_videos.count).to eq(6)
     end
 

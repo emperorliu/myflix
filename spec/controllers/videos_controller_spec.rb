@@ -30,6 +30,20 @@ describe VideosController do
     end
   end
 
+  describe "GET watch" do
+
+    let(:video) { Fabricate(:video) }
+
+    it "sets the @video variable to that particular video" do
+      get :watch, id: video.id
+      expect(assigns(:video)).to eq(video)
+    end
+
+    it_behaves_like "requires sign in" do
+      let(:action) { get :watch, id: video.id }
+    end
+  end
+
   describe "GET search" do
     it "sets @results for authenticated users" do
       set_current_user

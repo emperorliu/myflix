@@ -6,7 +6,6 @@ feature 'User following' do
     comedies = Category.create(name: "comedies")
     # comedies = Fabricate(:category, name: "comedies")
     south_park = Fabricate(:video, title: "South Park")
-    VideoCategory.create(video_id: south_park.id, category_id: comedies.id)
     Fabricate(:review, user: bob, video: south_park)
 
     jeff = Fabricate(:user)
