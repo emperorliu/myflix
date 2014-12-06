@@ -2,11 +2,9 @@ require 'spec_helper'
 
 feature "user interacts with queue" do
   scenario "user adds and reorders videos in the queue" do
-    comedies = Category.create(name: "comedies")
-    # comedies = Fabricate(:category, name: "comedies")
-    monk = Fabricate(:video, title: "Monk", category_ids: [comedies.id])
-    south_park = Fabricate(:video, title: "South Park", category_ids: [comedies.id])
-    futurama = Fabricate(:video, title: "Futurama", category_ids: [comedies.id])
+    monk = Fabricate(:video, title: "Monk")
+    south_park = Fabricate(:video, title: "South Park")
+    futurama = Fabricate(:video, title: "Futurama")
 
     sign_in
 
