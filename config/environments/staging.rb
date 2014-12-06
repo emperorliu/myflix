@@ -24,9 +24,9 @@ Myflix::Application.configure do
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'secret-island-5222.herokuapp.com',
+    :domain         => 'myflixjeff-staging.herokuapp.com',
     :authentication => :plain,
   }
 
-  config.action_mailer.default_url_options = { host: 'secret-island-5222.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'myflixjeff-staging.herokuapp.com' }
 end
