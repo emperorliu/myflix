@@ -10,6 +10,10 @@ Myflix::Application.routes.draw do
     collection do
       get :search, to: 'videos#search'
     end
+
+    member do
+      get :watch
+    end
     resources :reviews, only: [:create]
   end
   resources :categories, only: [:show]
