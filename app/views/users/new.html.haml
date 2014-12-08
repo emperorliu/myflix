@@ -10,5 +10,6 @@
           = f.text_field :full_name, label: "Full Name"
           = hidden_field_tag :invitation_token, @invitation_token
           /* that way we don't hash invitation_token under user */
-          = f.form_group do
-            = f.submit "Sign Up"
+        .row
+          .col-sm-11.col-sm-offset-2
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key=#{ENV["STRIPE_PUBLISHABLE_KEY"]} data-name="MyFlix Sign Up Charge" data-description="Only $9.99 for the best video service" data-amount="999"> </script>

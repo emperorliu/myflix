@@ -20,4 +20,8 @@ Myflix::Application.configure do
   config.assets.debug = true
 
   config.eager_load = false
+
+  config.logger = Logger.new(STDOUT)
+  config.logger.level = Logger.const_get('INFO')
+  config.log_level    = :info
 end
