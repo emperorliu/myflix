@@ -20,21 +20,19 @@ class UsersController < ApplicationController
       # rescue Stripe::CardError => e
       #   flash[:danger] = e.message
       # end
-      # charge = 
-      StripeWrapper::Charge.create(
+      charge = StripeWrapper::Charge.create(
         :amount => 999,
         :card => params[:stripeToken],
         :description => "Sign up charge for #{@user.email}"
       )
-      # if charge.successful?
-      #   flash[:success] = "Thanks for your support!"
-      #   AppMailer.send_welcome_email(@user).deliver
-      #   redirect_to sign_in_path
-      # else
-      #   flash[:danger] = charge.error_message
-      # end
-      AppMailer.send_welcome_email(@user).deliver
-      redirect_to sign_in_path
+      if charge.successful?
+        flash[:success] = "Thanks for your support!"
+        AppMailer.send_welcome_email(@user).deliver
+        redirect_to sign_in_path
+      else
+        flash[:danger] = charge.error_message
+        render :new
+      end
     else
       render :new
     end
