@@ -1,4 +1,5 @@
 jQuery(function($) {
+  debugger;
   $('#payment-form').submit(function(event) {
     var $form = $(this);
     $form.find('button').prop('disabled', true);
@@ -9,7 +10,6 @@ jQuery(function($) {
 
 function stripeResponseHandler(status, response) {
   var $form = $('#payment-form');
-
   if (response.error) {
     $form.find('.payment-errors').text(response.error.message);
     $form.find('button').prop('disabled', false);
@@ -19,4 +19,4 @@ function stripeResponseHandler(status, response) {
     $form.append($('<input type="hidden" name="stripeToken" />').val(token));
     $form.get(0).submit();
   }
-};
+}

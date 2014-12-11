@@ -9,17 +9,30 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       handle_invitation
-      Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
-      begin
-        charge = Stripe::Charge.create(
-          :amount => 999,
-          :currency => "usd",
-          :card => params[:stripeToken],
-          :description => "Sign up charge for #{@user.email}"
-        )
-      rescue Stripe::CardError => e
-        flash[:danger] = e.message
-      end
+      # Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
+      # begin
+      #   charge = Stripe::Charge.create(
+      #     :amount => 999,
+      #     :currency => "usd",
+      #     :card => params[:stripeToken],
+      #     :description => "Sign up charge for #{@user.email}"
+      #   )
+      # rescue Stripe::CardError => e
+      #   flash[:danger] = e.message
+      # end
+      # charge = 
+      StripeWrapper::Charge.create(
+        :amount => 999,
+        :card => params[:stripeToken],
+        :description => "Sign up charge for #{@user.email}"
+      )
+      # if charge.successful?
+      #   flash[:success] = "Thanks for your support!"
+      #   AppMailer.send_welcome_email(@user).deliver
+      #   redirect_to sign_in_path
+      # else
+      #   flash[:danger] = charge.error_message
+      # end
       AppMailer.send_welcome_email(@user).deliver
       redirect_to sign_in_path
     else

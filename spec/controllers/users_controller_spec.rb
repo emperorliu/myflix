@@ -12,6 +12,8 @@ describe UsersController do
   describe "POST create" do
     context "with valid input" do
       before do
+        StripeWrapper::Charge.stub(:create)
+        # create is trying to hit Stripe server, but didn't set up vcr for specs. stubbing because this whole process is already tested in StripeWrapper. trusting that StripeWrapper charge will do the right thing, so won't integrate with controller test.
         post :create, user: Fabricate.attributes_for(:user)
       end
 
@@ -67,7 +69,10 @@ describe UsersController do
 
     context "sending emails" do
 
-      before { ActionMailer::Base.deliveries.clear }
+      before do
+        StripeWrapper::Charge.stub(:create)
+        ActionMailer::Base.deliveries.clear
+      end
 
       it "sends out the email with valid inputs" do
         post :create, user: { email: "jeff@example.com", password: "password", full_name: "jeff" }
