@@ -19,8 +19,8 @@ describe StripeWrapper do
           :card => token,
           :description => "Charge for test@example.com"
         )
-        expect(response.amount). to eq(999)
-        expect(response.currency).to eq('usd')
+        expect(response.charge.amount). to eq(999)
+        expect(response.charge.currency).to eq('usd')
       end
     end
   end
