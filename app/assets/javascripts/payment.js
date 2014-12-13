@@ -10,7 +10,6 @@ jQuery(function($) {
 function stripeResponseHandler(status, response) {
   var $form = $('#payment-form');
   if (response.error) {
-    alert('hello')
     $form.find('.payment-errors').text(response.error.message);
     $form.find('button').prop('disabled', false);
   } else {
