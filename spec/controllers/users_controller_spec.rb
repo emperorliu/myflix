@@ -82,25 +82,22 @@ describe UsersController do
     end
 
     context "valid personal info and declined card" do
-
-      it "does not create a new user record" do
+      before do
         charge = double(:charge, successful?: false, error_message: "Your card was declined.")
         StripeWrapper::Charge.should_receive(:create).and_return(charge)
         post :create, user: Fabricate.attributes_for(:user), stripeToken: '1231241'
+      end
+
+      it "does not create a new user record" do
         expect(User.count).to eq(0)
       end
 
       it "renders the new template" do
-        charge = double(:charge, successful?: false, error_message: "Your card was declined.")
-        StripeWrapper::Charge.should_receive(:create).and_return(charge)
-        post :create, user: Fabricate.attributes_for(:user), stripeToken: '1231241'
         expect(response).to render_template :new
       end
+
       it "sets the flash error message" do
-        charge = double(:charge, successful?: false, error_message: "Your card was declined.")
-        StripeWrapper::Charge.should_receive(:create).and_return(charge)
-        post :create, user: Fabricate.attributes_for(:user), stripeToken: '1231241'
-        expect(response).to render_template :new
+        expect(flash[:danger]).to eq("Your card was declined.")
       end
     end
 
