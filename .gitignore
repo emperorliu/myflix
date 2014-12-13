@@ -17,4 +17,10 @@ dump.rdb
 /tmp
 
 # Ignore application configuration
+<<<<<<< HEAD
 /config/application.yml
+=======
+/config/application.yml
+
+dump.rdb
+>>>>>>> week7a
