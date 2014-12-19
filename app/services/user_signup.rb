@@ -40,7 +40,7 @@ class UserSignup
 
   def handle_invitation(invitation_token)
     if invitation_token.present?
-      invitation = Invitation.where(token: invitation_token).first
+      invitation = Invitation.find_by(token: invitation_token)
       @user.follow(invitation.inviter)
       invitation.inviter.follow(@user)
       invitation.update_column(:token, nil)

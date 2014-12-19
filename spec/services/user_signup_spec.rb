@@ -22,7 +22,6 @@ describe UserSignup do
         jeff = Fabricate(:user)
         invitation = Fabricate(:invitation, inviter: jeff, recipient_email: 'sean@gmail.com')
         UserSignup.new(Fabricate.build(:user, { email: 'sean@gmail.com', password: 'password', full_name: 'Sean' })).sign_up("some_stripe_token", invitation.token)
-        # post :create, user: { email: 'sean@gmail.com', password: 'password', full_name: 'Sean' }, invitation_token: invitation.token
         sean = User.where(email: 'sean@gmail.com').first
         expect(sean.follows?(jeff)).to be true
       end
