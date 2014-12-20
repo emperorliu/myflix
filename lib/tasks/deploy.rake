@@ -12,7 +12,7 @@
    task :production do
      deployment = Paratrooper::Deploy.new("jeff-myflix") do |deploy|
        deploy.tag              = 'production',
-       deploy.match_tag        = 'staging',
+       deploy.match_tag        = 'staging'
      end
 
      deployment.deploy
