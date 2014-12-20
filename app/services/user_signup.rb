@@ -7,6 +7,7 @@ class UserSignup
   end
 
   def sign_up(stripe_token, invitation_token)
+    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
     if @user.valid?
       payment = StripeWrapper::Charge.create(
         :amount => 999,
