@@ -13,7 +13,6 @@
      deployment = Paratrooper::Deploy.new("jeff-myflix") do |deploy|
        deploy.tag              = 'production',
        deploy.match_tag        = 'staging',
-       deploy.maintenance_mode = !ENV['NO_MAINTENANCE']
      end
 
      deployment.deploy
