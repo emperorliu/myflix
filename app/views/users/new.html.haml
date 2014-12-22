@@ -5,6 +5,7 @@
 = javascript_include_tag 'payment'
 
 %section.register.container
+  - render_flash_message
   .row
     .col-sm-10.col-sm-offset-1
       = bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-5", html: { id: "payment-form" }) do |f|
