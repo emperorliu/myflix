@@ -5,8 +5,8 @@ describe UserSignup do
     context "valid personal info and valid card" do
 
       before do
-        charge = double(:charge, successful?: true)
-        StripeWrapper::Charge.should_receive(:create).and_return(charge)
+        customer = double(:customer, successful?: true)
+        StripeWrapper::Customer.should_receive(:create).and_return(customer)
         ActionMailer::Base.deliveries.clear
         # create is trying to hit Stripe server, but didn't set up vcr for specs. stubbing because this whole process is already tested in StripeWrapper. trusting that StripeWrapper charge will do the right thing, so won't integrate with controller test.
         # stub has no 100% expectation the method was called, so we use should_receive
@@ -54,8 +54,8 @@ describe UserSignup do
 
     context "valid personal info and declined card" do
       before do
-        charge = double(:charge, successful?: false, error_message: "Your card was declined.")
-        StripeWrapper::Charge.should_receive(:create).and_return(charge)
+        customer = double(:customer, successful?: false, error_message: "Your card was declined.")
+        StripeWrapper::Customer.should_receive(:create).and_return(customer)
         UserSignup.new(Fabricate.build(:user)).sign_up('1231231', nil)
       end
 
@@ -72,7 +72,7 @@ describe UserSignup do
       end
 
       it "does not charge the card" do
-        StripeWrapper::Charge.should_not_receive(:create)
+        StripeWrapper::Customer.should_not_receive(:create)
         UserSignup.new(User.new(password: "password", full_name: "jeff")).sign_up('1231231', nil)
       end
 
