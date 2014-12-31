@@ -20,6 +20,7 @@ Myflix::Application.routes.draw do
 
   namespace :admin do
     resources :videos, only: [:new, :create]
+    resources :payments, only: [:index]
   end
 
   resources :users, only: [:show]
@@ -46,6 +47,7 @@ Myflix::Application.routes.draw do
   get 'expired_token', to: 'pages#expired_token'
 
   resources :invitations, only: [:new, :create]
-
+  
   mount Sidekiq::Web, at: '/sidekiq'
+  mount StripeEvent::Engine, at: '/stripe_events' # provide a custom path
 end

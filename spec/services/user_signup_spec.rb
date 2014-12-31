@@ -5,8 +5,8 @@ describe UserSignup do
     context "valid personal info and valid card" do
 
       before do
-        charge = double(:charge, successful?: true)
-        StripeWrapper::Charge.should_receive(:create).and_return(charge)
+        customer = double(:customer, successful?: true, customer_token: "abcde")
+        StripeWrapper::Customer.should_receive(:create).and_return(customer)
         ActionMailer::Base.deliveries.clear
         # create is trying to hit Stripe server, but didn't set up vcr for specs. stubbing because this whole process is already tested in StripeWrapper. trusting that StripeWrapper charge will do the right thing, so won't integrate with controller test.
         # stub has no 100% expectation the method was called, so we use should_receive
@@ -16,6 +16,11 @@ describe UserSignup do
         UserSignup.new(Fabricate.build(:user)).sign_up("some_stripe_token", nil)
         # .new gets an instance of the class, http requests get a hash
         expect(User.count).to eq(1)
+      end
+
+      it "stores the customer token from stripe" do
+        UserSignup.new(Fabricate.build(:user)).sign_up("some_stripe_token", nil)
+        expect(User.first.customer_token).to eq("abcde")
       end
 
       it "makes the user follow the inviter" do
@@ -54,8 +59,8 @@ describe UserSignup do
 
     context "valid personal info and declined card" do
       before do
-        charge = double(:charge, successful?: false, error_message: "Your card was declined.")
-        StripeWrapper::Charge.should_receive(:create).and_return(charge)
+        customer = double(:customer, successful?: false, error_message: "Your card was declined.")
+        StripeWrapper::Customer.should_receive(:create).and_return(customer)
         UserSignup.new(Fabricate.build(:user)).sign_up('1231231', nil)
       end
 
@@ -72,7 +77,7 @@ describe UserSignup do
       end
 
       it "does not charge the card" do
-        StripeWrapper::Charge.should_not_receive(:create)
+        StripeWrapper::Customer.should_not_receive(:create)
         UserSignup.new(User.new(password: "password", full_name: "jeff")).sign_up('1231231', nil)
       end
 

@@ -19,8 +19,8 @@ http_interactions:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.1.2 p95 (2014-05-08)","platform":"x86_64-darwin13.0","publisher":"stripe","uname":"Darwin
-        Jeffreys-MacBook-Air.local 14.0.0 Darwin Kernel Version 14.0.0: Fri Sep 19
-        00:26:44 PDT 2014; root:xnu-2782.1.97~2/RELEASE_X86_64 x86_64"}'
+        Jeffreys-Air 14.0.0 Darwin Kernel Version 14.0.0: Fri Sep 19 00:26:44 PDT
+        2014; root:xnu-2782.1.97~2/RELEASE_X86_64 x86_64"}'
       Content-Length:
       - '82'
   response:
@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Dec 2014 05:12:10 GMT
+      - Tue, 30 Dec 2014 03:24:24 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '624'
+      - '711'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -47,7 +47,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_OBAcc08Gw8tOvU4A
+      - req_7p9SBzbkEN8eHY1I
       Stripe-Version:
       - '2014-11-20'
       Strict-Transport-Security:
@@ -56,14 +56,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_158lioJGSn3Q2fvTolfRDIxp",
+          "id": "tok_15FGcOJGSn3Q2fvT6pRtjcGk",
           "livemode": false,
-          "created": 1418361130,
+          "created": 1419909864,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_158lioJGSn3Q2fvTXHZuMGSg",
+            "id": "card_15FGcOJGSn3Q2fvT8i8QVrbO",
             "object": "card",
             "last4": "0119",
             "brand": "Visa",
@@ -79,18 +79,21 @@ http_interactions:
             "address_state": null,
             "address_zip": null,
             "address_country": null,
+            "cvc_check": null,
+            "address_line1_check": null,
+            "address_zip_check": null,
             "dynamic_last4": null,
             "customer": null
           }
         }
     http_version: 
-  recorded_at: Fri, 12 Dec 2014 05:13:51 GMT
+  recorded_at: Tue, 30 Dec 2014 03:27:51 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&card=tok_158lioJGSn3Q2fvTolfRDIxp&description=An%20invalid%20charge.
+      string: amount=999&currency=usd&card=tok_15FGcOJGSn3Q2fvT6pRtjcGk&description=An%20invalid%20charge.
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -104,8 +107,8 @@ http_interactions:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.1.2 p95 (2014-05-08)","platform":"x86_64-darwin13.0","publisher":"stripe","uname":"Darwin
-        Jeffreys-MacBook-Air.local 14.0.0 Darwin Kernel Version 14.0.0: Fri Sep 19
-        00:26:44 PDT 2014; root:xnu-2782.1.97~2/RELEASE_X86_64 x86_64"}'
+        Jeffreys-Air 14.0.0 Darwin Kernel Version 14.0.0: Fri Sep 19 00:26:44 PDT
+        2014; root:xnu-2782.1.97~2/RELEASE_X86_64 x86_64"}'
       Content-Length:
       - '92'
   response:
@@ -116,7 +119,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Dec 2014 05:12:11 GMT
+      - Tue, 30 Dec 2014 03:24:25 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -132,7 +135,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_xq8l5NfeCxepoBqF
+      - req_GcltckKfDk9r1r1T
       Stripe-Version:
       - '2014-11-20'
     body:
@@ -143,9 +146,9 @@ http_interactions:
             "message": "An error occurred while processing your card. Try again in a little bit.",
             "type": "card_error",
             "code": "processing_error",
-            "charge": "ch_158lipJGSn3Q2fvTeByYOEew"
+            "charge": "ch_15FGcOJGSn3Q2fvTfHtouQY8"
           }
         }
     http_version: 
-  recorded_at: Fri, 12 Dec 2014 05:13:51 GMT
+  recorded_at: Tue, 30 Dec 2014 03:27:51 GMT
 recorded_with: VCR 2.9.3
