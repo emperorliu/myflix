@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 24 Dec 2014 01:47:42 GMT
+      - Thu, 25 Dec 2014 21:42:46 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -47,7 +47,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_zRlf1isUwHWuybcZ
+      - req_tvz8qAGOuJjjUNHd
       Stripe-Version:
       - '2014-11-20'
       Strict-Transport-Security:
@@ -56,14 +56,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_15D4FWJGSn3Q2fvTUSyb1uIo",
+          "id": "tok_15DjNaJGSn3Q2fvTuSxE1vLB",
           "livemode": false,
-          "created": 1419385662,
+          "created": 1419543766,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_15D4FWJGSn3Q2fvTOMXyFhhK",
+            "id": "card_15DjNaJGSn3Q2fvTdcEJfYc8",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -87,13 +87,13 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Wed, 24 Dec 2014 01:50:33 GMT
+  recorded_at: Thu, 25 Dec 2014 21:45:49 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: card=tok_15D4FWJGSn3Q2fvTUSyb1uIo&email=colton%40kuhnmills.biz&plan=basicplanid
+      string: card=tok_15DjNaJGSn3Q2fvTuSxE1vLB&email=marlin_waelchi%40skiles.name&plan=basicplanid
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -110,7 +110,7 @@ http_interactions:
         Jeffreys-Air 14.0.0 Darwin Kernel Version 14.0.0: Fri Sep 19 00:26:44 PDT
         2014; root:xnu-2782.1.97~2/RELEASE_X86_64 x86_64"}'
       Content-Length:
-      - '79'
+      - '85'
   response:
     status:
       code: 200
@@ -119,11 +119,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 24 Dec 2014 01:47:43 GMT
+      - Thu, 25 Dec 2014 21:42:46 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '2320'
+      - '2326'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -135,7 +135,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_tMMz2FLzFgVCvyQf
+      - req_CmlHiKT1NyZsc3WZ
       Stripe-Version:
       - '2014-11-20'
       Strict-Transport-Security:
@@ -145,21 +145,21 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1419385662,
-          "id": "cus_5Npv9NizmTt2se",
+          "created": 1419543766,
+          "id": "cus_5OWQP8p131JuTc",
           "livemode": false,
           "description": null,
-          "email": "colton@kuhnmills.biz",
+          "email": "marlin_waelchi@skiles.name",
           "delinquent": false,
           "metadata": {},
           "subscriptions": {
             "object": "list",
             "total_count": 1,
             "has_more": false,
-            "url": "/v1/customers/cus_5Npv9NizmTt2se/subscriptions",
+            "url": "/v1/customers/cus_5OWQP8p131JuTc/subscriptions",
             "data": [
               {
-                "id": "sub_5NpvV5ZxyNvDTs",
+                "id": "sub_5OWQzeAaZbqPRe",
                 "plan": {
                   "interval": "month",
                   "name": "basicplan",
@@ -176,12 +176,12 @@ http_interactions:
                   "statement_description": null
                 },
                 "object": "subscription",
-                "start": 1419385662,
+                "start": 1419543766,
                 "status": "active",
-                "customer": "cus_5Npv9NizmTt2se",
+                "customer": "cus_5OWQP8p131JuTc",
                 "cancel_at_period_end": false,
-                "current_period_start": 1419385662,
-                "current_period_end": 1422064062,
+                "current_period_start": 1419543766,
+                "current_period_end": 1422222166,
                 "ended_at": null,
                 "trial_start": null,
                 "trial_end": null,
@@ -201,10 +201,10 @@ http_interactions:
             "object": "list",
             "total_count": 1,
             "has_more": false,
-            "url": "/v1/customers/cus_5Npv9NizmTt2se/cards",
+            "url": "/v1/customers/cus_5OWQP8p131JuTc/cards",
             "data": [
               {
-                "id": "card_15D4FWJGSn3Q2fvTOMXyFhhK",
+                "id": "card_15DjNaJGSn3Q2fvTdcEJfYc8",
                 "object": "card",
                 "last4": "4242",
                 "brand": "Visa",
@@ -224,12 +224,12 @@ http_interactions:
                 "address_line1_check": null,
                 "address_zip_check": null,
                 "dynamic_last4": null,
-                "customer": "cus_5Npv9NizmTt2se"
+                "customer": "cus_5OWQP8p131JuTc"
               }
             ]
           },
-          "default_card": "card_15D4FWJGSn3Q2fvTOMXyFhhK"
+          "default_card": "card_15DjNaJGSn3Q2fvTdcEJfYc8"
         }
     http_version: 
-  recorded_at: Wed, 24 Dec 2014 01:50:33 GMT
+  recorded_at: Thu, 25 Dec 2014 21:45:49 GMT
 recorded_with: VCR 2.9.3

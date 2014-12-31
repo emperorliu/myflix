@@ -57,5 +57,10 @@ module StripeWrapper
     def error_message
       customer.message
     end
+
+    def customer_token
+      customer.id
+      # ensures stripe wrapper will return customer_token by looking at ID field of wrapped response from Stripe, and then user signup will look at response, take customer_token and store it into user records
+    end
   end
 end

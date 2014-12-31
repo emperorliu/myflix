@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.stripe.com/v1/charges
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&card=tok_158sTmJGSn3Q2fvTbxztViBd&description=Sign%20up%20charge%20for%20joe%40example.com
+      string: card=tok_15FGwyJGSn3Q2fvTr1txoxJ9&email=joe%40example.com&plan=basicplanid
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -19,10 +19,10 @@ http_interactions:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.1.2 p95 (2014-05-08)","platform":"x86_64-darwin13.0","publisher":"stripe","uname":"Darwin
-        Jeffreys-MacBook-Air.local 14.0.0 Darwin Kernel Version 14.0.0: Fri Sep 19
-        00:26:44 PDT 2014; root:xnu-2782.1.97~2/RELEASE_X86_64 x86_64"}'
+        Jeffreys-Air 14.0.0 Darwin Kernel Version 14.0.0: Fri Sep 19 00:26:44 PDT
+        2014; root:xnu-2782.1.97~2/RELEASE_X86_64 x86_64"}'
       Content-Length:
-      - '114'
+      - '74'
   response:
     status:
       code: 402
@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Dec 2014 12:25:07 GMT
+      - Tue, 30 Dec 2014 03:45:41 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '214'
+      - '169'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -47,7 +47,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_Wp3TJGDBv6r0lqU9
+      - req_3ikdsc9YdEbm5nCa
       Stripe-Version:
       - '2014-11-20'
     body:
@@ -57,10 +57,9 @@ http_interactions:
           "error": {
             "message": "An error occurred while processing your card. Try again in a little bit.",
             "type": "card_error",
-            "code": "processing_error",
-            "charge": "ch_158sTmJGSn3Q2fvTfuzQii1w"
+            "code": "processing_error"
           }
         }
     http_version: 
-  recorded_at: Fri, 12 Dec 2014 12:26:51 GMT
+  recorded_at: Tue, 30 Dec 2014 03:49:07 GMT
 recorded_with: VCR 2.9.3

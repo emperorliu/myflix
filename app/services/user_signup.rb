@@ -13,6 +13,7 @@ class UserSignup
         :card => stripe_token
       )
       if customer.successful?
+        @user.customer_token = customer.customer_token
         @user.save
         # valid personal info & declined card won't come here
         handle_invitation(invitation_token)

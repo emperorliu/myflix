@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 11 Dec 2014 00:38:21 GMT
+      - Tue, 30 Dec 2014 03:24:25 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '624'
+      - '711'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -47,7 +47,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_335l7ZGrsc4q3Ixi
+      - req_8nQaGZHH6973GqR2
       Stripe-Version:
       - '2014-11-20'
       Strict-Transport-Security:
@@ -56,14 +56,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_158KyHJGSn3Q2fvTKprBZe3g",
+          "id": "tok_15FGcPJGSn3Q2fvT0zNdj3Qz",
           "livemode": false,
-          "created": 1418258301,
+          "created": 1419909865,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_158KyHJGSn3Q2fvThyDGFvXs",
+            "id": "card_15FGcPJGSn3Q2fvTbHg0VkYS",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -79,18 +79,21 @@ http_interactions:
             "address_state": null,
             "address_zip": null,
             "address_country": null,
+            "cvc_check": null,
+            "address_line1_check": null,
+            "address_zip_check": null,
             "dynamic_last4": null,
             "customer": null
           }
         }
     http_version: 
-  recorded_at: Thu, 11 Dec 2014 00:39:57 GMT
+  recorded_at: Tue, 30 Dec 2014 03:27:51 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&card=tok_158KyHJGSn3Q2fvTKprBZe3g&description=Charge%20for%20test%40example.com
+      string: amount=999&currency=usd&card=tok_15FGcPJGSn3Q2fvT0zNdj3Qz&description=Charge%20for%20test%40example.com
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -116,11 +119,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 11 Dec 2014 00:38:22 GMT
+      - Tue, 30 Dec 2014 03:24:25 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '1320'
+      - '1352'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -132,7 +135,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_oXDEJ6DjBgUqYINu
+      - req_JzXvDyQyPeCqnwE4
       Stripe-Version:
       - '2014-11-20'
       Strict-Transport-Security:
@@ -141,24 +144,17 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_158KyIJGSn3Q2fvTSjOOelOH",
+          "id": "ch_15FGcPJGSn3Q2fvTys0xkEZj",
           "object": "charge",
-          "created": 1418258302,
+          "created": 1419909865,
           "livemode": false,
           "paid": true,
           "amount": 999,
           "currency": "usd",
           "refunded": false,
           "captured": true,
-          "refunds": {
-            "object": "list",
-            "total_count": 0,
-            "has_more": false,
-            "url": "/v1/charges/ch_158KyIJGSn3Q2fvTSjOOelOH/refunds",
-            "data": []
-          },
           "card": {
-            "id": "card_158KyHJGSn3Q2fvThyDGFvXs",
+            "id": "card_15FGcPJGSn3Q2fvTbHg0VkYS",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -180,7 +176,7 @@ http_interactions:
             "dynamic_last4": null,
             "customer": null
           },
-          "balance_transaction": "txn_158KyIJGSn3Q2fvToNLlk8A9",
+          "balance_transaction": "txn_15FGcPJGSn3Q2fvTpJmTR5kL",
           "failure_message": null,
           "failure_code": null,
           "amount_refunded": 0,
@@ -189,12 +185,20 @@ http_interactions:
           "description": "Charge for test@example.com",
           "dispute": null,
           "metadata": {},
-          "statement_description": null,
+          "statement_descriptor": null,
           "fraud_details": {},
           "receipt_email": null,
           "receipt_number": null,
-          "shipping": null
+          "shipping": null,
+          "refunds": {
+            "object": "list",
+            "total_count": 0,
+            "has_more": false,
+            "url": "/v1/charges/ch_15FGcPJGSn3Q2fvTys0xkEZj/refunds",
+            "data": []
+          },
+          "statement_description": null
         }
     http_version: 
-  recorded_at: Thu, 11 Dec 2014 00:39:58 GMT
+  recorded_at: Tue, 30 Dec 2014 03:27:52 GMT
 recorded_with: VCR 2.9.3

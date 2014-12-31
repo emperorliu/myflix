@@ -81,6 +81,15 @@ describe StripeWrapper do
           )
         expect(response.error_message).to eq("An error occurred while processing your card. Try again in a little bit.")
       end
+
+      it "returns the customer token for a valid card", :vcr do
+        jeff = Fabricate(:user)
+        response = StripeWrapper::Customer.create(
+          user: jeff,
+          card: valid_token
+          )
+        expect(response.customer_token).to be_present
+      end
     end
   end
 end
