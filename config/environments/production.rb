@@ -28,5 +28,5 @@ Myflix::Application.configure do
     :authentication => :plain,
   }
 
-  config.action_mailer.default_url_options = { host: 'secret-island-5222.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'jeff-myflix.herokuapp.com' }
 end
